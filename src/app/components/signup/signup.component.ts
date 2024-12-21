@@ -35,8 +35,7 @@ export class SignupComponent {
     this.successMessage = '';
 
     const phoneNumberWithCode = `${this.selectedCountryCode}${signUpForm.value.phoneNumber}`;
-    console.log(signUpForm.value);
-    
+  
     try {
       const { isSignUpComplete, userId, nextStep } = await signUp({
         username: signUpForm.value.username,
@@ -57,7 +56,6 @@ export class SignupComponent {
       }
     } catch (error: any) {
       console.log(error);
-      
       this.errorMessage = error.message || 'An error occurred during signup.';
     }
   }

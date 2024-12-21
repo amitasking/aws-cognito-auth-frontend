@@ -27,18 +27,15 @@ export class OtpComponent implements AfterViewInit {
   constructor(private route: ActivatedRoute, private router : Router) {}
 
   ngOnInit() {
-    // Access the 'username' query parameter from the URL
     this.route.queryParams.subscribe((params) => {
       this.username = params['username'];
       console.log('Username from query params:', this.username);
     });
   }
 
-  
-  async onSubmit() {
-    
-    const otp = `${this.otp1?.nativeElement.value}${this.otp2?.nativeElement.value}${this.otp3?.nativeElement.value}${this.otp4?.nativeElement.value}${this.otp5?.nativeElement.value}${this.otp6?.nativeElement.value}`;
 
+  async onSubmit() {
+    const otp = `${this.otp1?.nativeElement.value}${this.otp2?.nativeElement.value}${this.otp3?.nativeElement.value}${this.otp4?.nativeElement.value}${this.otp5?.nativeElement.value}${this.otp6?.nativeElement.value}`;
     try{
       const { isSignUpComplete, nextStep } = await confirmSignUp({
         username: this.username,
@@ -53,7 +50,6 @@ export class OtpComponent implements AfterViewInit {
     catch (error: any) {
       console.error('Error during sign up:', error);
     }
- 
   }
 
   resendOtp() {

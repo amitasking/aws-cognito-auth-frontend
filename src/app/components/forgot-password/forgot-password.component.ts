@@ -10,12 +10,11 @@ import { resetPassword, type ResetPasswordOutput } from 'aws-amplify/auth';
 })
 export class ForgotPasswordComponent {
   email: string = '';
-  
+
   constructor(
     private router: Router,
     private http: HttpClient 
-  ) 
-  {}
+  ) {}
 
  async onForgotPassword() {
     if (!this.email) 
