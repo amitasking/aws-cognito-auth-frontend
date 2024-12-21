@@ -1,0 +1,174 @@
+<section  style="background-color: #eee;">
+  <div class="container h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-12 col-xl-11">
+        <div class="card text-black" style="border-radius: 25px;">
+          <div class="card-body p-md-5">
+            <div class="row justify-content-center">
+              <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign Up</p>
+                <form #signUpForm="ngForm" (ngSubmit)="onSignUp(signUpForm)" novalidate>
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <div class="form-outline flex-fill mb-0 me-3">
+                      <label for="givenName" class="form-label">First Name</label>
+                      <input
+                        id="givenName"
+                        name="givenName"
+                        type="text"
+                        class="form-control"
+                        ngModel
+                        required
+                        placeholder="Enter your first name"
+                      />
+                    </div>
+                    <div class="form-outline flex-fill mb-0">
+                      <label for="familyName" class="form-label">Last Name</label>
+                      <input
+                        id="familyName"
+                        name="familyName"
+                        type="text"
+                        class="form-control"
+                        ngModel
+                        required
+                        placeholder="Enter your last name"
+                      />
+                    </div>
+                  </div>
+
+                  <!-- Username -->
+                  <div class="form-outline mb-4">
+                    <label for="username" class="form-label">Username</label>
+                    <input
+                      id="username"
+                      name="username"
+                      type="text"
+                      class="form-control"
+                      ngModel
+                      #username="ngModel"
+                      required
+                      placeholder="Enter your username"
+                    />
+                    <div *ngIf="username.invalid && username.touched" class="text-danger">
+                      Username is required.
+                    </div>
+                  </div>
+
+                  <!-- Email -->
+                  <div class="form-outline mb-4">
+                    <label for="email" class="form-label">Email</label>
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      class="form-control"
+                      ngModel
+                      #email="ngModel"
+                      required
+                      email
+                      placeholder="Enter your email"
+                    />
+                    <div *ngIf="email.invalid && email.touched" class="text-danger">
+                      Enter a valid email.
+                    </div>
+                  </div>
+
+                  <!-- Country Code and Phone -->
+                  <div class="form-outline mb-4">
+                    <label for="countryCode" class="form-label">Country Code</label>
+                    <select
+                      id="countryCode"
+                      name="countryCode"
+                      class="form-select"
+                      [(ngModel)]="selectedCountryCode"
+                      required
+                    >
+                      <option *ngFor="let country of countryCodes" [value]="country.code">
+                        {{ country.name }} ({{ country.code }})
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <label for="phoneNumber" class="form-label">Phone Number</label>
+                    <input
+                      id="phoneNumber"
+                      name="phoneNumber"
+                      type="text"
+                      class="form-control"
+                      ngModel
+                      #phoneNumber="ngModel"
+                      required
+                      pattern="^[0-9]{7,15}$"
+                      placeholder="Enter your phone number"
+                    />
+                    <div *ngIf="phoneNumber.invalid && phoneNumber.touched" class="text-danger">
+                      Enter a valid phone number (7-15 digits).
+                    </div>
+                  </div>
+
+                  <!-- First Name and Last Name -->
+               
+                  <!-- Password -->
+                  <div class="form-outline mb-4">
+                    <label for="password" class="form-label">Password</label>
+                    <input
+                      id="password"
+                      name="password"
+                      type="password"
+                      class="form-control"
+                      ngModel
+                      #password="ngModel"
+                      required
+                      pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,}$"
+                      placeholder="Enter password"
+                    />
+                    <small class="text-muted">
+                      Password must have at least 1 uppercase, 1 lowercase, 1 number, 1 special character, and minimum 8 characters.
+                    </small>
+                    <div *ngIf="password.invalid && password.touched" class="text-danger">
+                      Invalid password format.
+                    </div>
+                  </div>
+
+                  <!-- Confirm Password -->
+                  <div class="form-outline mb-4">
+                    
+                    <label for="confirmPassword" class="form-label">Confirm Password</label>
+                    <input
+                      id="confirmPassword"
+                      name="confirmPassword"
+                      type="password"
+                      class="form-control"
+                      [(ngModel)]="confirmPassword"
+                      required
+                      placeholder="Confirm password"
+                    />
+                    <div *ngIf="signUpForm.value.password != confirmPassword" class="text-danger">
+                      Passwords do not match.
+                    </div>
+                  </div>
+
+                  <button
+                    type="submit"
+                    class="btn btn-primary btn-block mt-3"
+                    [disabled]="signUpForm.invalid || (signUpForm.value.password != confirmPassword)"
+                  >
+                    Sign Up
+                  </button>
+                </form>
+
+              </div>
+              <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+                <img
+                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                  class="img-fluid"
+                  alt="Sample image"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
